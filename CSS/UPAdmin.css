@@ -1,0 +1,83 @@
+body,html{
+    height: 100%;
+    background-image: linear-gradient(rgb(245, 245, 245),rgb(240, 97, 240));
+}
+#form_edit{
+    border: 5px outset rgb(123, 213, 216);
+    position: absolute;
+    top: 50%;left: 50%;
+    transform: translate(-50%,-50%);
+    padding: 12px;
+    border-radius: 20px 0;
+    
+    
+}
+#form_edit input{
+    width: 100%;
+    padding: 8px;
+    border: none;
+    border-radius: 50px;
+    outline: none;
+
+}
+ .lo{
+    position: absolute;
+    height: 0px;
+    width: 0px;
+    background: rgb(2, 196, 196);
+   
+}
+input:focus .lo{
+    height: 100px;
+    width: 100px;
+}
+#form_edit .form-group{
+    position: relative;
+    padding: 2px;
+    margin-top: 12px;
+    
+}
+#form_edit label{
+    position: absolute;
+    top: 0px;
+    right: 0%;
+    transform: rotate(15deg);
+    padding: 2px;
+    color: white;
+    border-radius: 12px;
+    background: #000;
+}
+.div{
+    position: fixed;
+    top: 0;left: 0;
+}
+#alert_up{
+    position: fixed;
+    top: 0;
+    width: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.tosan{
+    top: 100%;
+    left: 0;
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background: #000;
+    animation: anim 3s;
+}
+@keyframes anim {
+    0%{
+        width: 0;
+    }
+    100%{
+       width: 100%;
+
+    }
+}
+@media screen and (max-width:500px){
+    #form_edit{
+        width: 100%;
+    }
+}

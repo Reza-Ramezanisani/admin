@@ -1,0 +1,92 @@
+body, html {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  font-family: "Sofia", sans-serif;
+  background-repeat: no-repeat;
+  height: 100%;
+  background-image: linear-gradient(#e4a3a3 25%, white 50%);
+}
+
+.color {
+  height: 50vh;
+  width: 50vw;
+  background-size: 100% 100%;
+  filter: hue-rotate(150deg);
+  animation: color 4s linear infinite;
+  background-image: linear-gradient(-30deg, #e7cece 0%, #babae4 0%, #e2caca 50%, #c5c5e4 100%);
+  position: absolute;
+  right: 25%;
+  top: 20%;
+  transform: rotateZ(200deg);
+}
+
+@keyframes color {
+  from {
+    filter: hue-rotate(0deg) blur(4px);
+  }
+  to {
+    filter: hue-rotate(360deg) blur(5px);
+  }
+}
+
+.login {
+  position: absolute;
+  background-image: linear-gradient(to bottom, rgba(90, 65, 65, 0.1) 25%, rgba(90, 65, 65, 0.7), rgba(90, 65, 65, 0.1) 25%);
+  top: 50%;
+  transform: translateY(-50%);
+  height: 100%;
+  display: grid;
+  padding: 25px;
+  height: 50vh;
+  color: white;
+}
+
+.login h1 {
+  text-align: center;
+}
+
+.login .form-group {
+  position: relative;
+  margin-top: 15px;
+}
+
+.login .form-group input[type="password"], .login .form-group input[type="email"] {
+  width: auto;
+  padding: 10px;
+  padding-left: 30px;
+  outline: none;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #000;
+}
+
+.login .form-group input::placeholder {
+  color: #f367a1;
+}
+
+.login .form-group i {
+  color: #ff00b3;
+  position: absolute;
+  font-size: 1em;
+  left: 3%;
+  top: 30%;
+  cursor: pointer;
+}
+/*# sourceMappingURL=login.css.map */
+#sub{
+  color: pink;
+  padding: 12px;
+  max-width: 100%;
+  width: 100%;
+ cursor: pointer;
+ border: none;
+ outline: none;
+ border-radius: 52px;
+  box-shadow:  0px 10px 3px pink;
+  transition: 0.2s;
+}
+#sub:focus{
+  transform: translateY(7px);
+  box-shadow: 0 5px 3px white;
+}
