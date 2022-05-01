@@ -6,6 +6,7 @@
     $cat=htmlspecialchars(stripslashes(mysqli_real_escape_string($conn,$_POST['cat'])));
     $price=htmlspecialchars(stripslashes(mysqli_real_escape_string($conn,$_POST['price'])));
     $desc=htmlspecialchars(stripslashes(mysqli_real_escape_string($conn,$_POST['desc'])));
+    $discount_num=htmlspecialchars(stripslashes(mysqli_real_escape_string($conn,$_POST['discount_num'])));
     // date_default_timezone_set('Asia/Tehran');
     // $time= date('Y-m-d H:i:s');
     // print_r($_POST);
@@ -32,7 +33,7 @@
     if(empty($name) || empty($num)  || empty($price)){
          echo "<span class='text-danger'>ورودی نام و توضیحات نباید خالی باشد</span>";
          exit();
-    }elseif (!preg_match("/^[0-9]+$/",$num)) {
+    }elseif (!preg_match("/^[1-9]+$/",$num)) {
          echo "<span class='text-danger'>ورودی تعداد محصول باید فقط عدد باشد</span>";
          exit();
 
@@ -40,11 +41,15 @@
         echo "<span class='text-danger'>ورودی قیمت باید فقط عدد باشد</span>";
         exit();
 
-   }elseif (!preg_match("/^[a-zA-Z0-9 اآبپتثجچحخدذرزژسشصضطظعغفقکگلمنوهی]+$/",$name)) {
+   }elseif (!preg_match("/^[0-9]+$/",$discount_num)) {
+    echo "<span class='text-danger'>ورودی تخفیف باید فقط عدد باشد</span>";
+    exit();
+
+}elseif (!preg_match("/^[a-zA-Z0-9 اآبپتثجچحخدذرزژسشصضطظعغفقکگلمنوهی]+$/",$name)) {
         echo "<span class='text-danger'>ورودی نام محصول باید حروف و عدد (انگلیسی یا فارسی) باشد</span>";
         exit();
 
-    }elseif (!preg_match("/[0-9]/",$cat)) {
+    }elseif (!preg_match("/^[0-9]+$/",$cat)) {
         echo "<span class='text-danger'>ورودی بسته بندی اشتباه است</span>";
         exit();
     }elseif (!preg_match("/^[a-zA-Z0-9 اآبپتثجچحخدذرزژسشصضطظعغفقکگلمنوهی]+$/",$desc)) {
@@ -52,6 +57,9 @@
         exit();
     }elseif (strlen($desc) > 120) {
         echo "<span class='text-danger'>ورودی توضیحات حداکثر 120 کاکتر می باشد</span>";
+        exit();
+    }elseif ($discount_num > 99 || $discount_num < 1 ) {
+        echo "<span class='text-danger'>ورودی تخفیف بین 1 تا 99  درصد  می باشد</span>";
         exit();
     }else {
         $sql="SELECT name_menu FROM menu WHERE name_menu=? ";
@@ -67,8 +75,8 @@
              $res=mysqli_stmt_get_result($stmt);
              if(mysqli_num_rows($res)===0){
              
-              $sql="INSERT INTO menu (name_menu,category,number_menu,price,desc_menu,status_menu,dis)
-              values(?,?,?,?,?,?,?);
+              $sql="INSERT INTO menu (name_menu,category,number_menu,price,desc_menu,status_menu,dis,discount_num)
+              values(?,?,?,?,?,?,?,?);
               ";
               $stmt=mysqli_stmt_init($conn);
               if(!mysqli_stmt_prepare($stmt,$sql)){
@@ -76,7 +84,7 @@
                exit();
 
               }else{
-                  mysqli_stmt_bind_param($stmt,"siiisss",$name,$cat,$num,$price,$desc,$status,$dis);
+                  mysqli_stmt_bind_param($stmt,"siiisssi",$name,$cat,$num,$price,$desc,$status,$dis,$discount_num);
                   mysqli_stmt_execute($stmt);
                   $result=mysqli_stmt_get_result($stmt);
                   echo "<span class='text-success'>".$name." ثبت شد</span>";

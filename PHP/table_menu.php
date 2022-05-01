@@ -5,7 +5,7 @@
 
         <?php
          require "db.php";
-         $sql='SELECT * FROM menu ';
+         $sql='SELECT * FROM menu INNER JOIN category ON menu.category = category.id; ';
          $res=mysqli_query($conn,$sql);
          if(mysqli_num_rows($res)){
              echo "
@@ -14,9 +14,9 @@
              <th>پاک و ویرایش</th>
              <th>نام محصول</th>
              <th>دسته بندی</th>
+             <th>وضعیت موجود در انبار</th>
              <th>تعداد محصول </th>
              <th>قیمت</th>
-             <th>وضعیت موجود در انبار</th>
              <th>تخفیف</th>
              <th>توضیحات</th>
              
@@ -25,7 +25,10 @@
              ";
 
             while($row=mysqli_fetch_assoc($res)){
-                $list=array('غذای خشک','غذای آبکی','Junk food','Beverages','Vegetables');
+                $discount=htmlspecialchars(stripslashes($row['discount_num']));
+                $price=htmlspecialchars(stripslashes($row['price']));
+                $PRIX=$price * ($discount / 100);
+                $num= htmlspecialchars(stripslashes($row['number_menu'])); 
                 ?>
                 <tr>
                     <td style="background-image: url('./PHP/upload_menu/<?php echo $row['img'];?>');background-repeat: no-repeat;background-size: 50%;background-position: 50% 50%;padding: 10px;">  </td>
@@ -37,20 +40,21 @@
                         </form>
                     </td>
                     <td><?php echo htmlspecialchars(stripslashes($row['name_menu'])); ?></td>
-                    <td><?php echo htmlspecialchars(stripslashes($list[$row['category']])); ?></td>
-                    <td><?php echo htmlspecialchars(stripslashes($row['number_menu'])); ?></td>
-                    <td>هزار تومن<?php echo htmlspecialchars(stripslashes($row['price'])); ?></td>
-                   
+                    <td><?php echo htmlspecialchars(stripslashes($row['name_cat'])); ?></td>
                     <td><?php if($row['status_menu']==="on"){
                         echo "موجود است";
                     }else{
                         echo "موجود نیست";
+                        $num=0;
                     }  
                     ?></td>
+                    <td><?php echo $num; ?></td>
+                    <td>هزار تومن<?php echo $price - $PRIX; ?></td>
+                   
                      
                     <td><?php 
                     if($row['dis']==="on"){
-                        echo "دارد";
+                        echo $discount."% دارد";
                     }else{
                         echo "ندارد";
                     }  

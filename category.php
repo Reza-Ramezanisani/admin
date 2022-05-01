@@ -16,6 +16,9 @@
 
      <!-- <script src="http://localhost/admin/JS/orders.js"></script> -->
    <?php include "link.php"; ?>
+   <script src="http://localhost/order/admin/JS/CAtegory.js"></script>
+   <script src="http://localhost/order/admin/JS/category_update.js"></script>
+   <script src="http://localhost/order/admin/JS/del_category.js"></script>
     <style>
         span{
             background: transparent;
@@ -27,26 +30,28 @@
 </head>
 <?php if(isset($_SESSION['id'])){?>
 <body onload="load()">
-        <!-- <div class="preloader">
+        <div class="preloader">
             <div class="spinner"></div>
         
-        </div> -->
+        </div>
         <?php include "nav.php";?>
         <?php include "nav-top.php";?>
         <br>
   <div class="main mx-5 ">
-      <div class="favorite_order p-2">
-          <h5>سفارشات</h5>
-          <!-- order-circel -->
-          <br>
-          <hr style="width: 50%;margin: 0 auto;">
-          <br>
-          <div id="tbl">
+    <div id="alert" style="display: none;"></div>
+    <form action="#" method="post" id="form_cat">
+        <input type="text" name="name" id="name">
+        <input type="submit" name="submot_category" id="submot_category">
+    </form>
 
+      
+          <div id="tbl_cat">
+
+            <?php include_once "PHP/category_table.php"; ?>
           
           </div>
         
-          </div>
+    
           
        
 
@@ -68,19 +73,19 @@
     <?php include "linkJS.php"; ?>
         
         <script>
-            setInterval(()=>{
-            let xhr=new XMLHttpRequest();
-            xhr.open("GET","./PHP/orders_server.php");
-            xhr.send();
-            let elem=document.getElementById("tbl");
-            xhr.onload=function () {
-                if(xhr.status===200 && xhr.readyState===4){
-                    elem.innerHTML=xhr.response;
-                }else{
-                    elem.innerHTML=xhr.status;
-                }
-            }
-        },500);
+        //     setInterval(()=>{
+        //     let xhr=new XMLHttpRequest();
+        //     xhr.open("GET","./PHP/category_table.php");
+        //     xhr.send();
+        //     let elem=document.getElementById("tbl");
+        //     xhr.onload=function () {
+        //         if(xhr.status===200 && xhr.readyState===4){
+        //             elem.innerHTML=xhr.response;
+        //         }else{
+        //             elem.innerHTML=xhr.status;
+        //         }
+        //     }
+        // },500);
         </script>
         <!-- <script src="bv.js"></script> -->
 </body>

@@ -76,3 +76,4 @@ function rang(x){
     let demo =document.getElementById("demo_range");
     demo.innerHTML="قیمت : هزار تومن  "+x.value * 4;
 }
+

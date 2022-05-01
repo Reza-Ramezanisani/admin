@@ -33,8 +33,27 @@
         .main{
             border: none;
         }
-        h1,h5{
+        p{
             color: gold;
+            font-size: 3vw;
+        }
+        @media screen and (max-width:600px){
+            .slide_header div .content{
+                font-size: 1.5vw;
+                height: 20px;
+        
+                }
+                .gallery .first{
+                    width: 80%;
+                    margin: 0 auto;
+                    border: 1px solid red;
+                }
+        }
+        @media screen and (min-width:600px){
+            .slide_header div .content{
+                font-size: 1.9vw;
+        
+                }
         }
         
     </style>
@@ -46,60 +65,103 @@
       
 ?>
 <body onload="load()">
-        <div class="preloader">
+        <!-- <div class="preloader">
             <div class="spinner"></div>
         
-        </div>
+        </div> -->
         <?php include "nav.php";?>
         <?php include "nav-top.php";?>
          <?php include 'profile.php';?>
 
         <br>
-  <div class="main mx-5 row">
+  <div class="main" style="width: 100%;margin: 0 auto;">
         
-         <div class="slide_header">
+         <div class="slide_header" >
              <div>
                  <img src="./img/food-7.jpg" alt="">
                   <span class="content">
-                      <h1>کارای این صفحه چیست؟</h1>
-                      <h5> در اینجا میتوانید تمام محصولات را ببینید </h5>
+                      <p>کارای این صفحه چیست؟<p>
+                      <p> در اینجا میتوانید تمام محصولات را ببینید </p>
                   </span>
                   
             </div>
              <div>
                  <img src="./img/food-5.jpg" alt="">
                   <span class="content">
-                     <h1>خوش آمدید</h3>
-                     <h5>به بخش گالری</h5>
+                     <p>خوش آمدید</p>
+                     <p>به بخش گالری</p>
                  </span>
                </div>
              <div>
                  <img src="./img/food-3.jpg" alt="">
                  <span class="content">
-                     <h1>امیدوارم</h1>
-                     <h5>این صفحه مورد پسند باشد</h5>
+                     <p>امیدوارم</p>
+                     <p>این صفحه مورد پسند باشد</p>
                  </span>
             </div>
              <div>
                  <img src="./img/food-6.jpg" alt="">
                  <span class="content">
-                     <h1>رهبر و اعضای تیم</h1>
-                     <h5>میتوانند محصولات را تغییر دهند</h5>
+                     <p>رهبر و اعضای تیم</p>
+                     <p>میتوانند محصولات را تغییر دهند</p>
                  </span>
             </div>
              
         </div>
         <br>
         <br>
-        <div class="my-5 bord">
-            <div class="hr"></div>
-            <h2 class="text-center text ">Menu</h2>
-        </div>
-        <div class="gallery">
+       
+        <div class="gallery" style="width: 100%;margin: 0 auto;overflow: auto;">
             <div  class="first" >
-                <img style="object-fit:contain" src="3.jpg" alt="">   
+                <img style="object-fit:contain" src="3.jpg"  alt="">   
             </div>
+            <?php 
+            require_once "PHP/db.php";
+            $sql='SELECT * FROM menu';
+            $res=mysqli_query($conn,$sql);
+            if(mysqli_num_rows($res)){
+                    while($row=mysqli_fetch_assoc($res)){
+                        ?>
             <div>
+                <div  class="text_gallery" style='padding: 7px;'>
+                    <div class="line1 " >
+                        <div ><img src="PHP/upload_menu/<?php echo $row['img']; ?>" style='width: 30vw;' alt=""/></div>
+                        <h4 class='text-info' style="padding: 9px;"><?php echo $row['name_menu']; ?></h4>
+                        <h5 class="text-success">قیمت:<?php echo $row['price']; ?>هزار تومن</h5>
+                        <span>تعداد:<?php echo $row['number_menu']; ?>تا</span>
+                        <span class="bg-info" style="width: 100px;border-radius: 12px;  vertical-align: middle;height: auto;">:وضعیت
+                        <?php if($row['status_menu']==="on"){
+                            echo "موجود است";
+                        }else{
+                            echo "<br>موجود نیست";
+                        }  
+                        
+                       
+                    if($row['dis']==="on"){
+                        echo " تخفیف:دارد";
+                    }else{
+                        echo " تخفیف:ندارد";
+                    }  
+                    ?>
+                    </span>
+                    
+                    </div>
+                        <p dir='rtl' style='font-size: 1.5em;'><?php echo $row['desc_menu']; ?></p>
+                        
+                       
+                    
+                </div>
+               
+            </div>
+
+
+                    <?php }
+            }else{
+            echo '<h2>هیچ محصولی به ثبت نرسیده</h2>';
+            
+            }
+            ?>
+            <!-- <div>
                 <div style="padding: 12px;"><img src="img/food-6.jpg" alt=""/></div>
                 <div  class="text_gallery">
                     <div class="line1">
@@ -190,7 +252,7 @@
                         
                         <button class="btn md-btn bg-danger fs-10">Remove</button>
                         <button class="btn text-white bg-dark fs-10">Edit</button>
-            </div>
+            </div> -->
             
             
            

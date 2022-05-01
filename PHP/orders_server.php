@@ -1,20 +1,22 @@
 <div class="table-responsive-xl">
               <table  class="table table-dark table-borderless">
               <tr>
-                           <th>name</th>
-                           <th>name menu</th>
-                           <th>Email</th>
-                           <th>tel</th>
-                           <th>address</th>
-                           <th>count order</th>
-                           <th>category</th>
-                           <th>price</th>
+                           <th>نام مشتری</th>
+                           <th>اسم منو</th>
+                           <th>آدرس</th>
+                           <th>ایمیل</th>
+                           <th>تلفن </th>
+                           <th>تعداد سفارش</th>
+                           <th>دسته بندی</th>
+                           <th>قیمت</th>
                            <th>discount</th>
+                           <th>چقدر از زمان سفارش گذشته</th>
+
                </tr>
                        
             
 <?php
-require "./PHP/db.php";
+require "./db.php";
 $sql = 'SELECT * FROM order_menu';
 $result = mysqli_query($conn,$sql);
 
@@ -37,6 +39,7 @@ echo '
                 <td>'.$row['category'].'</td>
                 <td>'.$row['price'].'</td>
                 <td>'.$row['dis'].'</td>
+                <td>'.$row['time'].'</td>
     </tr>
 
           ';

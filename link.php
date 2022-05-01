@@ -1,6 +1,6 @@
-<link rel="stylesheet" href="http://localhost/order/admin/CSS/ew.css">
+<link rel="stylesheet" href="http://localhost/order/admin/CSS/sty.css">
 <link rel="stylesheet" href="http://localhost/order/admin/CSS/style.css">
-<link rel="stylesheet" href="http://localhost/order/admin/CSS/Gh.css">
+<link rel="stylesheet" href="http://localhost/order/admin/CSS/ORiginal.css">
 <link rel="stylesheet" href="http://localhost/order/admin/CSS/consta.css">
 <link rel="stylesheet" href="http://localhost/order/admin/CSS/Pro.css">
 <link rel="stylesheet" href="http://localhost/order/admin/CSS/Ew.css">

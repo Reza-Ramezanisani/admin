@@ -17,6 +17,7 @@
     <!-- <script src="add_pr.js"></script>
     <script src="sidebar.js"></script> -->
     <script src="http://localhost/order/admin/JS/Add_product.js"></script>
+    <script src="http://localhost/order/admin/JS/dis.js"></script>
    <?php include "link.php"?>
    
     
@@ -59,15 +60,19 @@
             <div class="row">
                 <div class="form-group col-md"><span class="text-muted" dir='rtl'>نام محصول</span><input name="name"  class="form-control " type="text"></div>
                 <div class="form-group col-md"><span class="text-muted" dir='rtl'>دسته بندی</span><select name="cat" class='form-control' id="">
-                    <option value="0">غذای خشک</option>
-                    <option value="1">غذای آبکی</option>
-                    <option value="2">تنقلات</option>
-                    <option value="3">دسر</option>
-                    <option value="4">سبزیجات</option>
+                    <?php
+                    require "PHP/db.php";
+                    $sql = "SELECT * FROM category";
+                    $query = mysqli_query($conn,$sql);
+                    while ($res=mysqli_fetch_assoc($query)) {
+                        echo "<option value=".$res['id'].">".$res['name_cat']."</option>";
+                        
+                    }
+                    ?>
                 </select>
             </div>
             <div class="row">
-                <div class="form-group col-md"><span class="text-muted"  >تعداد</span><input  name="num" class='form-control' value="1" maxlength='3' type="number"></div>
+                <div class="form-group col-md"><span class="text-muted"  >تعداد</span><input min="1" name="num" class='form-control' value="1" maxlength='3' type="number"></div>
                 <div class="form-group col-md my-4"><input class='price_range' name="price" min="1" value="25" type="range" oninput="rang(this)"><label class="text-muted mx-1">  <span id="demo_range" dir="rtl">قیمت :   هزار تومن 100</span></label> </div>
             </div>
             <div class="row">
@@ -78,9 +83,11 @@
             
             
             <div class="form-group col-md"><br><span class="text-muted">بخش توضیح محصول</span><textarea name="desc" class='form-control'  placeholder="توضیحات" id="" cols="10" rows="10" maxlength='120' value=' ' dir="rtl"></textarea></div>
-            <span>وضعیت در انبار</span>   <input type="checkbox" name="status" id="a"> 
-            <span>تخفیف </span>   <input type="checkbox" name="dis" id="b"> 
-           
+            <span>وضعیت در انبار</span>   <input type="checkbox" checked name="status" id="a"> 
+            <span>تخفیف </span>   <input type="checkbox"  name="dis" id="b"> 
+            <div class="form-group col-md" id='DISCOUNT' style="display: none;"  >
+                <input type="number" max="99" min="1" name="discount_num" placeholder="چند درصد تخفیف" />
+            </div>
            
             <div class="form-group">
            
@@ -108,24 +115,28 @@
         <!-- <script src="JS.js"></script> -->
         <?php include "linkJS.php"?>
         <script>
+
+
             // clock
-function time() {
-  let h=document.getElementById("h");
-  let m=document.getElementById("m");
-  let s=document.getElementById("s");
-  let date=new Date();
-  let hours=date.getHours();
-  let mins=date.getMinutes();
-  let seconds=date.getSeconds();
-  hours=(hours<10)?"0"+hours:hours;
-  mins=(mins<10)?"0"+mins:mins;
-  seconds=(seconds<10)?"0"+seconds:seconds;
-  h.innerHTML=hours;
-  m.innerHTML=mins;
-  s.innerHTML=seconds;
-}
-setInterval(time,1000);
-time();
+        function time() {
+        let h=document.getElementById("h");
+        let m=document.getElementById("m");
+        let s=document.getElementById("s");
+        let date=new Date();
+        let hours=date.getHours();
+        let mins=date.getMinutes();
+        let seconds=date.getSeconds();
+        hours=(hours<10)?"0"+hours:hours;
+        mins=(mins<10)?"0"+mins:mins;
+        seconds=(seconds<10)?"0"+seconds:seconds;
+        h.innerHTML=hours;
+        m.innerHTML=mins;
+        s.innerHTML=seconds;
+        }
+        setInterval(time,1000);
+        time();
+      
+
         </script>
     <!-- <script src="npm/node_modules/toastr/toastr.js"></script> -->
     <!-- <script src="tos.js"></script> -->

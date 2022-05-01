@@ -97,7 +97,7 @@
 <body>
     <div class='alert' style='display: none;overflow:auto'></div>
    <?php require "./PHP/db.php";
-         $sql="SELECT * FROM menu WHERE ID=?";
+         $sql="SELECT * FROM menu INNER JOIN category ON menu.category = category.id WHERE menu.ID=?";
          $stmt=mysqli_stmt_init($conn);
          if(!mysqli_stmt_prepare($stmt,$sql)){
              echo "خطا";
@@ -110,7 +110,7 @@
          if(mysqli_num_rows($res)){
           while($row=mysqli_fetch_assoc($res)){
               
-        $list=array('dry Food','Watrey food','Junk food','Beverages','Vegetables');?>
+        ?>
     <form action="#" id='form_up'  method="post" enctype='multipart/form-data'>
         <img  src='./PHP/upload_menu/<?php echo $row['img']; ?>'>
             <div>
@@ -124,11 +124,14 @@
             <input type="text" name="name" id='a' value='<?php echo $row['name_menu']; ?>' autofocus>
         </div>
         <select type="text" name="cat" >
-                    <option value="0" <?php if($list[$row['category']]==="Dry food"){ echo 'selected';} ?>>Dry food</option>
-                    <option value="1" <?php if($list[$row['category']]==="Watrey food"){ echo 'selected';} ?> >Watrey food</option>
-                    <option value="2" <?php if($list[$row['category']]==="Junk food"){ echo 'selected';} ?>>Junk food</option>
-                    <option value="3" <?php if($list[$row['category']]==="Beverages"){ echo 'selected';} ?>>Beverages</option>
-                    <option value="4" <?php if($list[$row['category']]==="Vegetables"){ echo 'selected';} ?>>Vegetables</option>
+        <?php
+                    require "PHP/db.php";
+                    $sql = "SELECT * FROM category";
+                    $query = mysqli_query($conn,$sql);
+                    while ($re=mysqli_fetch_assoc($query)) {?>
+                       <option value="<?php echo $re['id']; ?>" <?php if($re['id'] == $row['id']){ echo "selected";}  ?>><?php echo $re['name_cat']; ?></option>
+                        
+                   <?php }?>
         </select>
         <div>
         <label for="b">تعداد محصول :</label>

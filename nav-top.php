@@ -5,7 +5,7 @@
             <i style="cursor: pointer;" onclick="location.href='inbox.php'" class="fas fa-envelope"></i>
             <i onclick="open_user()"  style="cursor: pointer;" class="fas fa-user"></i>
         </div>
-        <div class="modal_tiny_popup" >
+        <div class="modal_tiny_popup" style='z-index:10' >
             <span onclick="open_user()" style="font-size:25px;color:red;cursor: pointer;">&times;</span>
             <h5 dir="rtl">خوش آمدید</h5>
             

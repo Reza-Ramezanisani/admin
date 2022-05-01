@@ -1,5 +1,5 @@
 .main{
-    border: 1px solid #000;
+    border: 1px solid red;
   
 
 }
@@ -319,7 +319,8 @@ ul.option_msg li a:hover{
         
     }
     .slide_header div .content{
-        font-size: 1em;
+        font-size: .5em;
+        
     }
     
     
