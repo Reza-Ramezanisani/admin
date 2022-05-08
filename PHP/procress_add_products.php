@@ -13,6 +13,14 @@
    
     if(isset($_POST['dis'])){
         $dis=htmlspecialchars(mysqli_real_escape_string($conn,$_POST['dis']));
+        if (!preg_match("/^[0-9]+$/",$discount_num)) {
+            echo "<span class='text-danger'>ورودی تخفیف باید فقط عدد یا عدد مثبت باشد</span>";
+            exit();
+        
+        }elseif ($discount_num > 99 || $discount_num < 1 ) {
+            echo "<span class='text-danger'>ورودی تخفیف بین 1 تا 99  درصد  می باشد</span>";
+            exit();
+        }
     }else{
         $dis="off";
     }
@@ -31,21 +39,17 @@
     
     
     if(empty($name) || empty($num)  || empty($price)){
-         echo "<span class='text-danger'>ورودی نام و توضیحات نباید خالی باشد</span>";
+         echo "<span class='text-danger'> ورودی نام و توضیحات نباید خالی باشد یا تعداد محصولات نمیتواند صفر باشد</span>";
          exit();
-    }elseif (!preg_match("/^[1-9]+$/",$num)) {
-         echo "<span class='text-danger'>ورودی تعداد محصول باید فقط عدد باشد</span>";
+    }elseif (!preg_match("/^[0-9]+$/",$num)) {
+         echo "<span class='text-danger'>ورودی تعداد محصول باید فقط عدد یا عدد مثبت باشد</span>";
          exit();
 
     }elseif (!preg_match("/^[0-9]+$/",$price)) {
         echo "<span class='text-danger'>ورودی قیمت باید فقط عدد باشد</span>";
         exit();
 
-   }elseif (!preg_match("/^[0-9]+$/",$discount_num)) {
-    echo "<span class='text-danger'>ورودی تخفیف باید فقط عدد باشد</span>";
-    exit();
-
-}elseif (!preg_match("/^[a-zA-Z0-9 اآبپتثجچحخدذرزژسشصضطظعغفقکگلمنوهی]+$/",$name)) {
+   }elseif (!preg_match("/^[a-zA-Z0-9 اآبپتثجچحخدذرزژسشصضطظعغفقکگلمنوهی]+$/",$name)) {
         echo "<span class='text-danger'>ورودی نام محصول باید حروف و عدد (انگلیسی یا فارسی) باشد</span>";
         exit();
 
@@ -58,9 +62,10 @@
     }elseif (strlen($desc) > 120) {
         echo "<span class='text-danger'>ورودی توضیحات حداکثر 120 کاکتر می باشد</span>";
         exit();
-    }elseif ($discount_num > 99 || $discount_num < 1 ) {
-        echo "<span class='text-danger'>ورودی تخفیف بین 1 تا 99  درصد  می باشد</span>";
+    }elseif ($no < 1) {
+        echo "<span class='text-danger'>ورودی تعداد محصولات نمیتواند عدد منفی باشد</span>";
         exit();
+    
     }else {
         $sql="SELECT name_menu FROM menu WHERE name_menu=? ";
         

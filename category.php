@@ -24,6 +24,25 @@
             background: transparent;
             border-radius: 0;
         }
+        .main{
+                max-width: 80%;
+                margin: 0 auto;
+            }
+        
+        @media screen and (max-width:600px){
+            .main{
+                max-width: 100%;
+                margin-left:0;
+                margin-right:0
+            }
+            .input_table{
+                max-width: 100%;
+            }
+            .side div.side_content.act{
+                width: 130px;
+            }
+            
+        }
         
         
     </style>
@@ -37,7 +56,7 @@
         <?php include "nav.php";?>
         <?php include "nav-top.php";?>
         <br>
-  <div class="main mx-5 ">
+  <div class="main  ">
     <div id="alert" style="display: none;"></div>
     <form action="#" method="post" id="form_cat">
         <input type="text" name="name" id="name">

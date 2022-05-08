@@ -1,3 +1,3 @@
 
-<script src="http://localhost/order/admin/JS/ORIGInal.js"></script>
+<script src="http://localhost/order/admin/JS/ORIGINAL.js"></script>
 

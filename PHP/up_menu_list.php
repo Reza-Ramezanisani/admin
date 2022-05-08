@@ -8,14 +8,25 @@
     $no=htmlspecialchars(stripslashes(mysqli_real_escape_string($conn,$_POST['no'])));
     $price=htmlspecialchars(stripslashes(mysqli_real_escape_string($conn,$_POST['price'])));
     $desc=htmlspecialchars(stripslashes(mysqli_real_escape_string($conn,$_POST['desc'])));
-
+    $discount_num=htmlspecialchars(stripslashes(mysqli_real_escape_string($conn,$_POST['discount_num'])));
     settype($id,'integer');
+    // print_r($_POST);
     
     // برای دکمه های چک
     if(isset($_POST['dis'])){
       $dis=htmlspecialchars(mysqli_real_escape_string($conn,$_POST['dis']));
+      if ($discount_num > 99 || $discount_num < 1 ) {
+        echo "<span class='text-danger'>ورودی تخفیف بین 1 تا 99  درصد  می باشد</span>";
+        exit();
+      }elseif (!preg_match("/^[0-9]+$/",$discount_num)) {
+        echo "<span class='text-danger'>ورودی تخفیف باید فقط عدد یا عدد مثبت باشد</span>";
+        exit();
+      
+      }
+
   }else{
       $dis="off";
+      
   }
   if(isset($_POST['status'])){
       $status=htmlspecialchars(mysqli_real_escape_string($conn,$_POST['status']));
@@ -23,7 +34,6 @@
       $status="off";
   }
  
-
 
 
     if(empty($desc)){
@@ -42,9 +52,11 @@
   //  }      
 
     if(empty($name)  || empty($no) || empty($price) ){
-      echo " ورودی خالی است ";
+      echo " ورودی خالی است یا تعداد محصولات صفر نباید باشد ";
+      exit();
+      
     }elseif (!preg_match("/^[0-9]+$/",$no)) {
-      echo "<span class='text-danger'>ورودی تعداد محصول باید فقط عدد باشد</span>";
+      echo "<span class='text-danger'>ورودی تعداد محصول باید فقط عدد یا عدد مثبت باشد</span>";
       exit();
 
  }elseif (!preg_match("/^[0-9]+$/",$price)) {
@@ -64,19 +76,28 @@
  }elseif (strlen($desc) > 120) {
      echo "<span class='text-danger'>ورودی توضیحات حداکثر 120 کاکتر می باشد</span>";
      exit();
- }
+ }elseif ($no < 1) {
+     echo "<span class='text-danger'>ورودی تعداد محصولات نمیتواند عدد منفی باشد</span>";
+     exit();
+ 
+ }else{
+
+  $sql="UPDATE menu SET name_menu=?,category=?,number_menu=?,price=?,desc_menu=?, status_menu=?,dis=?,discount_num=? WHERE ID=?";
+  $stmt=mysqli_stmt_init($conn);
+  if(!mysqli_stmt_prepare($stmt,$sql)){
+      echo "خطا";
+      exit();
+  }else{
+      mysqli_stmt_bind_param($stmt,"siiisssii",$name,$cat,$no,$price,$desc,$status,$dis,$discount_num,$id);
+      mysqli_stmt_execute($stmt);
+      echo "<span style='color:white'>آپدیت موفقیت آمیز بود</span>";
+    } 
+}
+
+ 
    
   
-    $sql="UPDATE menu SET name_menu=?,category=?,number_menu=?,price=?,desc_menu=?, status_menu=?,dis=? WHERE ID=?";
-    $stmt=mysqli_stmt_init($conn);
-    if(!mysqli_stmt_prepare($stmt,$sql)){
-        echo "خطا";
-        exit();
-    }else{
-        mysqli_stmt_bind_param($stmt,"siiisssi",$name,$cat,$no,$price,$desc,$status,$dis,$id);
-        mysqli_stmt_execute($stmt);
-        echo "<span style='color:white'>آپدیت موفقیت آمیز بود</span>";
-      } 
+    
 if($_FILES['img']['error']!==4){
       
       

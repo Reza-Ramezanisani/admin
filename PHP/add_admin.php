@@ -14,24 +14,30 @@ $pwd2=htmlspecialchars(mysqli_real_escape_string($conn,$_POST['pwd2']));
 
 if(empty($user) || empty($mail) ||empty($pwd) || empty($tel)){
     echo "ورودی ها خالی هستند";
-    
+    exit();
 }
 else if(!preg_match("/^[a-zA-Z0-9 اآبپتثجچحخدذرزژسشصضطظعغفقکگلمنوهی]+$/",$user)){
             echo "نام باید فقط حروف (انگلیسی یا فارسی) یا عدد باشد";
+            exit();
             
     }
 elseif (!filter_var($mail,FILTER_VALIDATE_EMAIL)) {
     echo  "ایمیل نامعتبر است";
+    exit();
 }elseif (!preg_match("/^[0-9]+$/",$tel)) {
     echo "شماره تلفن موبایل باید فقط عدد باشد";
+    exit();
 }elseif (strlen($tel) !== 11 ) {
     echo " تعداد ارقام تلفن موبایل نادرست است";
+    exit();
 }
 elseif (!preg_match("/(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}/",$pwd) || strlen($pwd)<8) {
     echo "پسورد نامعتبر است";
+    exit();
 }
 elseif ($pwd !== $pwd2) {
     echo "دو تا پسورد با هم همخوانی ندارند";
+    exit();
 }
 else {
     $sql_num_member='SELECT username FROM bosssite';

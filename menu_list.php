@@ -31,6 +31,25 @@
             overflow:auto;
             height:20px;
         }
+        @media screen and (max-width:600px){
+            .main{
+                max-width: 100%;
+                margin-left:0;
+                margin-right:0
+            }
+            .main h2{
+                font-size: 20px;
+            }
+          
+            .side div.side_content.act{
+                width: 130px;
+            }
+            #tbl .table-responsive-md .table{
+                width: 100%;
+            }
+        
+
+        }
         
     </style>
 </head>
@@ -45,10 +64,15 @@
          <?php include 'profile.php';?>
 
         <br>
-        <div class="main mx-5 row"  >
+        <div class="main  row"  >
             <div class="path">
                     <div class="container" style="position: relative;">
                         <h4 style="font-weight: 10;">Product List</h4>
+                        <h5>Search table</h5>
+                        <div class="input_table" style="margin-bottom: 10px;width: 50%;">
+                            <input type="text" dir="rtl" placeholder="لطفا وارد کنید" onkeyup="search_table(this)"/>
+                            <span class="span_search_table"></span>
+                        </div>
                         <div style="display: none;" class="alert alert-success ">
                         </div>
                         <div id='tbl'>
@@ -68,6 +92,32 @@
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
     <?php include  "linkJS.php"?>
+    <script>
+        function search_table(x) {
+    let val_input  =  x.value.toUpperCase().trim();
+    let trs = document.querySelectorAll("#tbl .table tbody tr");
+    for (let i = 0; i < trs.length; i++) {
+        let tds= trs[i].getElementsByTagName("td");
+        let ind = 0;
+        for (let o = 0; o < tds.length; o++) {
+           let td= tds[o].innerText.toUpperCase();
+           
+            if(td.indexOf(val_input) === -1){
+                ind++;
+            }
+            // این عدد  7 تعداد ستونهای جدول است
+            if(ind===9){
+                trs[i].style.display="none";
+            }else{
+                trs[i].style.display="";
+            }
+            
+            
+        }
+        
+    }
+}
+    </script>
 
 </body>
 <?php  

@@ -1,6 +1,5 @@
 <hr>
 <div class="table-responsive-md ">
-   
     <table  class="table p-0  table-info ">
 
         <?php
@@ -9,6 +8,7 @@
          $res=mysqli_query($conn,$sql);
          if(mysqli_num_rows($res)){
              echo "
+             <thead>
          <tr>
              <th style='width:500px'>عکس</th>
              <th>پاک و ویرایش</th>
@@ -22,14 +22,24 @@
              
              
          </tr>
+         </thead>  
              ";
 
             while($row=mysqli_fetch_assoc($res)){
                 $discount=htmlspecialchars(stripslashes($row['discount_num']));
+                
                 $price=htmlspecialchars(stripslashes($row['price']));
                 $PRIX=$price * ($discount / 100);
+                $final_prix=$price - $PRIX;
                 $num= htmlspecialchars(stripslashes($row['number_menu'])); 
+                if($row['dis']==="off"){
+            
+                    $discount=100;
+                    $final_prix=$price;
+                }
                 ?>
+   <tbody>
+
                 <tr>
                     <td style="background-image: url('./PHP/upload_menu/<?php echo $row['img'];?>');background-repeat: no-repeat;background-size: 50%;background-position: 50% 50%;padding: 10px;">  </td>
                     <td>
@@ -49,7 +59,7 @@
                     }  
                     ?></td>
                     <td><?php echo $num; ?></td>
-                    <td>هزار تومن<?php echo $price - $PRIX; ?></td>
+                    <td>هزار تومن<?php echo $final_prix; ?></td>
                    
                      
                     <td><?php 
@@ -65,6 +75,7 @@
                   
                    
                 </tr>
+                </tbody>
                
           <?php  }
 

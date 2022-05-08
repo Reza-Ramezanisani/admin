@@ -5,18 +5,19 @@
    
 ?>
 <!DOCTYPE html>
-<html lang="en" dir="rtl">
+<html lang="en" >
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>login</title>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="http://localhost/order/admin/CSS/log.css">
+    <link rel="stylesheet" href="http://localhost/order/admin/CSS/login.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia|Open+San|Audiowide&effect=fire|neon">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- <script src="http://localhost/order/admin/JS/loginAj.js"></script> -->
+
 </head>
 <body onload='textEffect()'>
     <div class="color">
@@ -44,7 +45,7 @@
 
     ?>
     <div class="login">
-        <h1 id='login' class="font-effect-fire">ورود </h1>
+        <h1 id='login' class="font-effect-fire"></h1>
         <form action="PHP/loginServer.php" id='form' method="post" autocomplete="off">
             <input type="hidden" name="token" value="<?php echo $token; ?>">
             <div class="form-group " >
@@ -64,16 +65,13 @@
                
             </div>
             <br>
-            <div class="form-group check"  style="color:black">
-               <input type="checkbox"  >مرا به خاطر بسپار
-                <span></span>
-            </div>
+            
+            <a href="http://localhost/order/admin/forgetPassword.php">پسوردم را فراموش کردم</a>
+            <a href="http://localhost/order/admin/resetPassword.php">دوباره تنظیم کردن پسورد</a>
         </form>
-        <a href="#">پسوردم را فراموش کردم</a>
-        <a href="#">دوباره تنظیم کردن پسورد</a>
     </div>
     <div class="k"></div>
-    <!-- <script>
+    <script>
         var i=0;
         function textEffect(){
         const elem=document.getElementById("login");
@@ -85,7 +83,7 @@
             setTimeout(textEffect,200);
 
         }
-    </script> -->
+    </script>
 </body>
 
 </html>

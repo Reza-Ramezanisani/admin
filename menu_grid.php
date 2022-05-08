@@ -11,15 +11,15 @@
     <title>Admin</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Trirong">
+    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Trirong"> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="http://localhost/order/admin/CSS/ew.css">
-    <link rel="stylesheet" href="http://localhost/order/admin/CSS/style.css">
-    <link rel="stylesheet" href="http://localhost/order/admin/CSS/Gh.css">
-    <link rel="stylesheet" href="http://localhost/order/admin/CSS/consta.css">
+    <!-- <link rel="stylesheet" href="http://localhost/order/admin/CSS/ew.css"> -->
+    <link rel="stylesheet" href="http://localhost/order/admin/CSS/STRE.css">
+    <link rel="stylesheet" href="http://localhost/order/admin/CSS/ORIginal.css">
+    <!-- <link rel="stylesheet" href="http://localhost/order/admin/CSS/consta.css"> -->
     <link rel="stylesheet" href="http://localhost/order/admin/CSS/Pro.css">
-    <link rel="stylesheet" href="http://localhost/order/admin/CSS/Ew.css">
+    <!-- <link rel="stylesheet" href="http://localhost/order/admin/CSS/Ew.css"> -->
     <script src="http://localhost/order/admin/JS/Side.js"></script>
     <script src="http://localhost/order/admin/JS/PRoQr.js"></script>
     <script src="http://localhost/order/admin/JS/del_member_msg.js"></script>
@@ -37,6 +37,7 @@
             color: gold;
             font-size: 3vw;
         }
+        
         @media screen and (max-width:600px){
             .slide_header div .content{
                 font-size: 1.5vw;
@@ -65,20 +66,20 @@
       
 ?>
 <body onload="load()">
-        <!-- <div class="preloader">
+        <div class="preloader">
             <div class="spinner"></div>
         
-        </div> -->
+        </div>
         <?php include "nav.php";?>
         <?php include "nav-top.php";?>
          <?php include 'profile.php';?>
 
         <br>
-  <div class="main" style="width: 100%;margin: 0 auto;">
+  <div class="main" >
         
-         <div class="slide_header" >
-             <div>
-                 <img src="./img/food-7.jpg" alt="">
+         <div class="slide_header" style="width: 100%;margin: 0 auto;" >
+             <div style="border-radius: 0px;">
+                 <img src="./img/food-7.jpg" style="border-radius: 10px;" alt="">
                   <span class="content">
                       <p>کارای این صفحه چیست؟<p>
                       <p> در اینجا میتوانید تمام محصولات را ببینید </p>
@@ -86,21 +87,21 @@
                   
             </div>
              <div>
-                 <img src="./img/food-5.jpg" alt="">
+                 <img src="./img/food-5.jpg" style="border-radius: 10px;" alt="">
                   <span class="content">
                      <p>خوش آمدید</p>
                      <p>به بخش گالری</p>
                  </span>
                </div>
              <div>
-                 <img src="./img/food-3.jpg" alt="">
+                 <img src="./img/food-3.jpg" style="border-radius: 10px;" alt="">
                  <span class="content">
                      <p>امیدوارم</p>
                      <p>این صفحه مورد پسند باشد</p>
                  </span>
             </div>
              <div>
-                 <img src="./img/food-6.jpg" alt="">
+                 <img src="./img/food-6.jpg" style="border-radius: 10px;" alt="">
                  <span class="content">
                      <p>رهبر و اعضای تیم</p>
                      <p>میتوانند محصولات را تغییر دهند</p>
@@ -112,8 +113,8 @@
         <br>
        
         <div class="gallery" style="width: 100%;margin: 0 auto;overflow: auto;">
-            <div  class="first" >
-                <img style="object-fit:contain" src="3.jpg"  alt="">   
+            <div  class="first" style="border-radius: 0;" >
+                <img style="width: 100%;height: 100%;;border-radius: 0px;" src="3.jpg"   alt="">   
             </div>
             <?php 
             require_once "PHP/db.php";
@@ -125,7 +126,7 @@
             <div>
                 <div  class="text_gallery" style='padding: 7px;'>
                     <div class="line1 " >
-                        <div ><img src="PHP/upload_menu/<?php echo $row['img']; ?>" style='width: 30vw;' alt=""/></div>
+                        <div ><img src="PHP/upload_menu/<?php echo $row['img']; ?>" alt=""/></div>
                         <h4 class='text-info' style="padding: 9px;"><?php echo $row['name_menu']; ?></h4>
                         <h5 class="text-success">قیمت:<?php echo $row['price']; ?>هزار تومن</h5>
                         <span>تعداد:<?php echo $row['number_menu']; ?>تا</span>

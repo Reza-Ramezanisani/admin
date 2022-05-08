@@ -1,9 +1,6 @@
 <?php
-  $conn=mysqli_connect("localhost",'root','',"msg");
-  if(mysqli_connect_error($conn)){
-      echo "error server";
-  }
-  $sql = "SELECT img,name_msg,sender_id,msg,receiver_id FROM m LEFT JOIN users AS u ON u.unique_id=m.sender_id WHERE sender_id='{$_POST['id']}' OR receiver_id='{$_POST['id']}'";
+  include_once "db.php";
+  $sql = "SELECT img,name_msg,sender_id,msg,receiver_id FROM m LEFT JOIN users AS u ON u.unique_id=m.sender_id WHERE sender_id='{$_POST['id']}' OR receiver_id='{$_POST['id']}' ORDER BY id_msg ASC";
   $result  = mysqli_query($conn,$sql);
   while($row = mysqli_fetch_assoc($result)){
     if($row['name_msg']===NULL){

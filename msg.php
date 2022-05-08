@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>message</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
     <script >
         $(document).ready(function () {
         //    document.body.classList.add("scroll");
@@ -19,7 +18,7 @@
                
             });
             function send_id() {
-                $.post("msg_server.php",{id:<?php echo $_GET['id']; ?>},function (data,status) {
+                $.post("PHP/msg_server.php",{id:<?php echo $_GET['id']; ?>},function (data,status) {
                     $("#e").html(data,status);
                 });
                
@@ -30,13 +29,13 @@
     <style>
        
     </style>
-    <link rel="stylesheet" href="msg.css">
+    <link rel="stylesheet" href="http://localhost/order/admin/CSS/msg.css">
 </head>
 <body>
  <img class="img_page" src="3.jpg">
         <header style="">
             <h1 id='p' >
-                Message
+                پیغام
             </h1>
         </header>
         <main>
@@ -55,7 +54,7 @@
         <footer>
         <div class="btns">
 
-                    <button id='sub' style='width:25% ;flex:25% ;padding: 10px;border: none;cursor: pointer;margin-right: 10px;'>Send</button>
+                    <button id='sub' style='width:25% ;flex:25% ;padding: 10px;border: none;cursor: pointer;margin-right: 10px;'>ارسال</button>
                     <input style='width:75% ;flex:75% ;border: none;' id='msg' type="text" name="msg" />
          </div>
         </footer>

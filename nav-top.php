@@ -1,11 +1,11 @@
       
         <h2 style='text-align: center;'>داشبورد</h1>
         <i  class="fas fa-align-right" onclick="slide_bar()" style="float: right;margin-top: 0;cursor: pointer;z-index: 1;"></i>
-        <div class="popup">
+        <div class="popup" style='z-index:100000'>
             <i style="cursor: pointer;" onclick="location.href='inbox.php'" class="fas fa-envelope"></i>
             <i onclick="open_user()"  style="cursor: pointer;" class="fas fa-user"></i>
         </div>
-        <div class="modal_tiny_popup" style='z-index:10' >
+        <div class="modal_tiny_popup" style='z-index:100000' >
             <span onclick="open_user()" style="font-size:25px;color:red;cursor: pointer;">&times;</span>
             <h5 dir="rtl">خوش آمدید</h5>
             

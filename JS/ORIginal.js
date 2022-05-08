@@ -77,3 +77,6 @@ function rang(x){
     demo.innerHTML="قیمت : هزار تومن  "+x.value * 4;
 }
 
+
+
+

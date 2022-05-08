@@ -17,7 +17,7 @@
     <!-- <script src="add_pr.js"></script>
     <script src="sidebar.js"></script> -->
     <script src="http://localhost/order/admin/JS/Add_product.js"></script>
-    <script src="http://localhost/order/admin/JS/dis.js"></script>
+    <script src="http://localhost/order/admin/JS/DIS.js"></script>
    <?php include "link.php"?>
    
     
@@ -26,6 +26,48 @@
         span{
             background: transparent;
             border-radius: 0;
+        }
+        .main{
+                max-width: 80%;
+                margin: 0 auto;
+            }
+        @media screen and (max-width:600px){
+            .main{
+                max-width: 100%;
+                margin-left:0;
+                margin-right:0
+            }
+            .main h2{
+                font-size: 20px;
+            }
+            .input_table{
+                max-width: 100%;
+            }
+            .main form{
+                max-width: 100%;
+                border: 1px solid #000;
+                margin: 0;
+            }
+            .main form .row{
+               width: 100%;
+               margin: 0 auto;
+            }
+            .main form .row.file{
+                display: grid;
+            }
+            .main form .row.file .form-group.PRice{
+                display: grid;
+            }
+            .main #alert{
+                height: 150px;
+                width: 50%;
+                margin: 0 auto;
+            }
+            .side div.side_content.act{
+                width: 130px;
+            }
+        
+
         }
     </style>
 </head>
@@ -41,7 +83,7 @@
         <?php include 'profile.php';?>
 
         <br>
-  <div class="main mx-5 "style="margin-left: 0;" >
+  <div class="main  " >
       
   <?php include "clock.php"?>
   <br>
@@ -52,8 +94,8 @@
             <h2 class="mx-2" dir='rtl'>افزودن محصول</h2>
         
             <hr>
-         <form class="mx-4" action="#" id='form' method="post" style="position: relative;;padding: 20px;">
-         <div id="alert" dir="rtl" style="display: none;position: fixed;transform:translateX(-50%)"  class="alert alert-info fade show alert-dismissible ">
+         <form class="" action="#" id='form' method="post" style="padding: 20px;">
+         <div id="alert" dir="rtl" style="display: none;position: fixed;transform:translateX(-50%);text-align: center;overflow: auto;"  class="alert alert-info fade show alert-dismissible ">
             <div style="float: right;cursor: pointer;color: white;" data-bs-dismiss="alert" class="btn-close">&times;</div>
             <span>This is text</span>
          </div>
@@ -71,11 +113,11 @@
                     ?>
                 </select>
             </div>
-            <div class="row">
+            <div class="row file">
                 <div class="form-group col-md"><span class="text-muted"  >تعداد</span><input min="1" name="num" class='form-control' value="1" maxlength='3' type="number"></div>
-                <div class="form-group col-md my-4"><input class='price_range' name="price" min="1" value="25" type="range" oninput="rang(this)"><label class="text-muted mx-1">  <span id="demo_range" dir="rtl">قیمت :   هزار تومن 100</span></label> </div>
+                <div class="form-group PRice col-md my-4"><input class='price_range' name="price" min="1" value="25" type="range" oninput="rang(this)"><label class="text-muted mx-1">  <span id="demo_range" dir="rtl">قیمت :   هزار تومن 100</span></label> </div>
             </div>
-            <div class="row">
+            <div class="row file">
                 <div class="form-group col my-4"><input class='form-control'  onchange="preview(this)" accept="image/*" type="file" name="img" id=""></div>
                
                 <div  class="col my-4 "><img id="photo" src="" alt=""></div>
@@ -86,7 +128,7 @@
             <span>وضعیت در انبار</span>   <input type="checkbox" checked name="status" id="a"> 
             <span>تخفیف </span>   <input type="checkbox"  name="dis" id="b"> 
             <div class="form-group col-md" id='DISCOUNT' style="display: none;"  >
-                <input type="number" max="99" min="1" name="discount_num" placeholder="چند درصد تخفیف" />
+                <input type="number" max="99" style="width: 50%;margin-left:25%;" min="1" name="discount_num" placeholder="چند درصد تخفیف" />
             </div>
            
             <div class="form-group">

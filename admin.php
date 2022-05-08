@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
         <?php
-        echo $_SESSION['id'];
+       
          if($_SESSION['id']===12){
              echo "Admin_leader";
          }else{
@@ -31,6 +31,16 @@
             border: none;
             border-radius: none;
             background: transparent;
+        }
+        @media screen and (max-width:600px){
+            
+           
+            .side div.side_content.act{
+                width: 130px;
+            }
+            
+                
+           
         }
        
     </style>

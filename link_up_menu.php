@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
     <script>
     $(document).ready(function () {
         $('#up').click(function (event) {
@@ -139,18 +141,21 @@
         </div>
         <div>
             <label for="c">قیمت :</label>
-            <input type="number" name="price" id='c' value='<?php echo $row['price']; ?>'>
+            <input type="number" min="1" name="price" id='c' value='<?php echo $row['price']; ?>'>
         </div>
         
         <div>
-        <label for="s">وضعیت موجود در انبار :
-                    
-        </label>
+            <label for="s">وضعیت موجود در انبار :
+                        
+            </label>
             <input type="checkbox" id='s' name="status" <?php if($row['status_menu']==="on"){echo 'checked';}?>>
+            <input type="checkbox" id='v' class="DIS" name="dis" <?php if($row['dis']==="on"){echo 'checked';}?> >
             <label for="v" class='s'>
             تخفیف :
                      </label>
-            <input type="checkbox" id='v' name="dis" <?php if($row['dis']==="on"){echo 'checked';}?> >
+            <div class="form-group col-md" id='DISCOUNT'   >
+                    <input type="number" max="99" style="width: 50%" min="1" name="discount_num" placeholder="چند درصد تخفیف" />
+                </div>
         </div>
         <textarea name="desc"  placeholder="توضیحات" id="" cols="10" rows="10" maxlength='120'  style='color: black;' dir='rtl'><?php echo $row['desc_menu'];?></textarea>
 
